@@ -1,41 +1,41 @@
 import d from './Dialogs.module.css';
-import { NavLink } from 'react-router-dom';
+import DialogItem from './DialogItem/DialogItem';
+import MessageItem from './Message/MessageItem';
 
-const DialogItem = (props) => {
-    let path ="/dialogs/" + props.id;
-    return (
-        <div>
-            <div className={`${d.dialog} ${d.active}`} >
-                <NavLink to={path}>{props.name}</NavLink>
-            </div>
-        </div>
-    )
-} 
-
-const MessageItem = (props) => {
-    return (
-        <div className={d.message}>
-            {props.message}
-        </div>
-    )
-}
 
 const Dialogs = (props) => {
+
+    let dialogs = [
+        { id: 1, name: 'Sashka' },
+        { id: 2, name: 'Misha' },
+        { id: 3, name: 'Artem' },
+        { id: 4, name: 'Sanechek' },
+        { id: 5, name: 'Rostil' },
+        { id: 6, name: 'Lisa' },
+        { id: 7, name: 'Vera' }
+    ];
+
+    let messages = [
+        { id: 1, message: 'Hi!' },
+        { id: 2, message: 'Ti chmo' },
+        { id: 3, message: 'Day deneg' },
+        { id: 4, message: 'privet' },
+        { id: 5, message: 'sho ti' },
+        { id: 6, message: 'aaaaa' },
+        { id: 7, message: 'hahahah' }
+    ];
+
+    let dialogsElements = dialogs.map( (d) => <DialogItem name={d.name} id={d.id} /> );
+
+    let messagesElements = messages.map( (m) => <MessageItem message={m.message} /> );
+
     return (
         <div className={d.dialogs}>
             <div className={d.dialogsItems}>
-                <DialogItem name="Sashka" id="1" />
-                <DialogItem name="Misha" id="2" />
-                <DialogItem name="Artem" id="3" />
-                <DialogItem name="Sanechek" id="4" />
-                <DialogItem name="Rostik" id="5" />
-                <DialogItem name="Lisa" id="6" />
-                <DialogItem name="Vera" id="7" />
+                {dialogsElements}
             </div>
             <div className={d.messages}>
-                <MessageItem message="Hi!"/>
-                <MessageItem message="Ti chmo"/>
-                <MessageItem message="Day deneg"/>
+                {messagesElements}
             </div>
         </div>
     )
